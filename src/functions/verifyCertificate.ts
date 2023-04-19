@@ -27,7 +27,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
             body: JSON.stringify({
                 message: 'Certificado válido',
                 name: userCertificate.name,
-                url: `https://certificado-nodejs-rocketseat-2021.s3.amazonaws.com/${id}.pdf`
+                url: `https://certificate-nodejs-rocketseat-2021.s3.sa-east-1.amazonaws.com/${id}.pdf`
             })
         }
     };

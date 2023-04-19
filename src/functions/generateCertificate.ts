@@ -71,7 +71,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
         executablePath: await chromium.executablePath,
-        userDataDir: 'tmp'
+        userDataDir: 'tmp',
     });
 
     const page = await browser.newPage();
@@ -95,8 +95,9 @@ export const handler: APIGatewayProxyHandler = async (event) => {
     const s3 = new S3();
 
     await s3.putObject({
-        Bucket: "certificado-nodejs-rocketseat-2021",
+        Bucket: "certificate-nodejs-rocketseat-2021",
         Key: `${id}.pdf`,
+        ACL: "public-read",
         Body: pdf,
         ContentType: "application/pdf",
     }).promise();
@@ -105,7 +106,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         statusCode:201,
         body: JSON.stringify({
             message: "Certificado criado com sucesso!",
-            url: `https://certificado-nodejs-rocketseat-2021.s3.amazonaws.com/${id}.pdf`
+            url: `https://certificate-nodejs-rocketseat-2021.s3.sa-east-1.amazonaws.com/${id}.pdf`
         })
     }
 }
